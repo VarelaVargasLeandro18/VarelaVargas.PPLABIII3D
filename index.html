@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Primer Parcial</title>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><img src="" alt=""></div>
+
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="#">Nosotros</a></li>
+                <li><a href="#">Anuncios</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contactos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Administracion</h2>
+        <div class="img-container">
+            <img class="img-main" src="https://www.lavanguardia.com/files/image_948_465/uploads/2019/10/02/5fa53234969ff.jpeg" alt="">
+        </div>
+
+        <form action="#">
+            <fieldset>
+                <legend>Informacion Del Anuncio</legend>
+
+                <input type="number" name="id" value="0" hidden>
+
+                <label for="titulo">
+                    Titulo: <input type="text" name="titulo" id="titulo" placeholder="Titulo" size="50" required>
+                </label>
+
+                <label for="descripcion">
+                    Descripcion: <input type="text" name="descripcion" id="descripcion" placeholder="Descripción" size="50" required>
+                </label>
+
+                <fieldset class="inner-fs">
+                    <legend>ANIMAL</legend>
+                    <label for="perro">
+                        Perro: <input type="radio" name="animal" value="perro" id="perro" required>
+                    </label>
+                    <label for="gato">
+                        Gato: <input type="radio" name="animal" value="gato" id="gato" required>
+                    </label>
+                </fieldset>
+
+                <label for="precio">
+                    Precio: <input type="number" step="0.01" name="precio" id="precio" placeholder="Precio" size="50" required>
+                </label>
+
+                <div class="inner-fs">
+                    <input type="text" name="raza" id="raza" placeholder="Raza" required>
+                    <input type="date" name="fechaNac" id="fechaNac" required>
+                    <select name="vacuna" id="vacuna" required>
+                        <option hidden disabled selected>ELEGIR OPCION</option>
+                        <option value="Si">SI</option>
+                        <option value="No">NO</option>
+                    </select>
+                </div>
+
+            </fieldset>
+
+            <div class="btns-container">
+                <button id="guardar" >Guardar</button>
+                <button id="eliminar" >Eliminar</button>
+                <button id="cancelar">Cancelar</button>
+            </div>
+
+        </form>
+
+        <div class="table-container">
+            <table>
+    
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Titulo</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                        <th>Animal</th>
+                        <th>Raza</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Vacuna</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    <tr>
+                        
+                    </tr>
+                </tbody>
+    
+            </table>
+        </div>
+
+    </main>
+    
+</body>
+<script src="./js/script.js" type="module"></script>    
+</html>

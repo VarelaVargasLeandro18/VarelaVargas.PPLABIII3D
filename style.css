@@ -1,0 +1,67 @@
+@import url('./Spinner/spinner.css');
+@import url('./button.css');
+
+:root {
+    --cant-cols: 9;
+}
+
+#id {
+    display: none;
+}
+
+h2 {
+    color: lightcoral;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    margin: 2.3em;
+}
+
+.img-main {
+    width: 90vw;
+}
+
+form,
+form fieldset {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+label,
+.inner-fs {
+    margin: 1em 0;
+    width: 100%;
+}
+
+.inner-fs {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    margin: 1em 0;
+}
+
+.btns-container {
+    display: flex;
+    width: 100vw;
+    justify-content: space-between;
+}
+
+table {
+    border-collapse: collapse;
+    width: 90vw;
+    margin: auto;
+}
+
+tr, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    overflow: hidden;
+    text-align: center;
+}

@@ -1,0 +1,13 @@
+button {
+    font-size: 25px;
+    width: 6em;
+    height: 3.5em;
+    background-color: lightseagreen;
+    border: 1px solid beige;
+    border-radius: 25% 0 25% 0;
+    text-transform: uppercase;
+    color: ghostwhite;
+    box-shadow: -5px 5px 5px 0 rgba(0, 0, 0, 0.308);
+    transition: background-color .5s;
+    cursor: pointer;
+}
