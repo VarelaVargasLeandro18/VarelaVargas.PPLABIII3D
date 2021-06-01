@@ -44,7 +44,7 @@ export function crearMascotaDeForm ({ form = $('form') }) {
     } );
 } 
 
-export function cargarAForm ( {
+function cargarAForm ( {
     form = $('form'),
     mascota = null
 } ) {
@@ -74,7 +74,7 @@ export function agregarMascotaATabla ( mascota ) {
         if ( key !== 'id' ) td.innerText = value;
         else {
             td.innerText = value;
-            tr.setAttribute( 'anuncio-id', value );
+            tr.setAttribute( 'mascota-id', value );
         }    
         
         fragmentForTr.appendChild(td);
@@ -98,4 +98,22 @@ export function deTablaAForm ( tr, form ) {
     form.raza.value = childrenTd[5].innerText;
     form.fechaNac.value = childrenTd[6].innerText;
     form.vacuna.value = childrenTd[7].innerText;
+}
+
+export function eliminarPorId ( id, tbody = document.createElement('') ) {
+
+    const trs = tbody.childNodes;
+
+    trs.forEach ( (elem) => {        
+        if ( elem.nodeType === 1 ) {
+            const tr_id = elem.getAttribute('mascota-id');
+
+            if ( parseInt( tr_id ) === id ) {
+                elem.remove();
+                return
+            }
+        }
+
+    });
+
 }

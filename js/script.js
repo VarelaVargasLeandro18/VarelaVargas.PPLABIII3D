@@ -1,5 +1,5 @@
 const $ = (query) => document.querySelector(query);
-const ultimoId = 0;
+let ultimoId = 0;
 
 import { 
     removerSpinner, 
@@ -8,11 +8,29 @@ import {
 
 import {
     crearMascotaDeForm,
-    cargarAForm,
     agregarMascotaATabla,
-    deTablaAForm
+    deTablaAForm,
+    eliminarPorId
 
 } from './Mascota.js';
+
+function validarForm () {
+    let ret = true;
+    const elements = $('form').elements;
+
+    for ( let formIndex = 0; formIndex < elements.length; formIndex++ ) {
+        const elem = elements[formIndex];
+
+        if ( elem.type === "text" ||
+             elem.type === "number" || 
+            elem.type === "date" && 
+            elem.value === "" )
+            return false;
+
+    }
+
+    return ret;
+}
 
 function asignarEventListeners() {
 
@@ -23,6 +41,12 @@ function asignarEventListeners() {
         }
 
         if ( event.target.matches('#guardar') ) {
+
+            if ( !validarForm() ){
+                alert('FALTAN DATOS.');
+                return
+            }
+
             const mascota = crearMascotaDeForm({});
             mascota.id = ultimoId;
             agregarMascotaATabla(mascota);
@@ -30,7 +54,8 @@ function asignarEventListeners() {
         }
 
         if ( event.target.matches("#eliminar") ) {
-            
+            const id = parseInt($('form').id.value);
+            eliminarPorId( id, $('tbody') );
         }
 
         if ( event.target.matches('td') ) {
