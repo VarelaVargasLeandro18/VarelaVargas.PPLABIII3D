@@ -59,8 +59,10 @@ function asignarEventListeners() {
         }
 
         if ( event.target.matches('td') ) {
+            agregarSpinner();
             const tr = event.target.parentElement;
             deTablaAForm(tr, $('form'));
+            removerSpinner();
         }
 
         if ( event.target.matches('#cancelar') ) {
