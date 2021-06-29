@@ -1,5 +1,6 @@
 const $ = (query) => document.querySelector(query);
-let ultimoId = 0;
+let ultimoId = 1;
+const tiempoSpinner = 1500;
 
 import { 
     removerSpinner, 
@@ -10,27 +11,12 @@ import {
     crearMascotaDeForm,
     agregarMascotaATabla,
     deTablaAForm,
-    eliminarPorId
-
-} from './Mascota.js';
-
-function validarForm () {
-    let ret = true;
-    const elements = $('form').elements;
-
-    for ( let formIndex = 0; formIndex < elements.length; formIndex++ ) {
-        const elem = elements[formIndex];
-
-        if ( elem.type === "text" ||
-             elem.type === "number" || 
-            elem.type === "date" && 
-            elem.value === "" )
-            return false;
-
-    }
-
-    return ret;
-}
+    eliminarPorId,
+    cargarAlLocalStorage,
+    cargarDeLocalStorage,
+    agregarVariosATabla,
+    eliminarDeLocalStoragePorId
+} from './Anuncio_Mascota.js';
 
 function asignarEventListeners() {
 
@@ -41,33 +27,43 @@ function asignarEventListeners() {
         }
 
         if ( event.target.matches('#guardar') ) {
-
-            if ( !validarForm() ){
-                alert('FALTAN DATOS.');
-                return
-            }
-
-            const mascota = crearMascotaDeForm({});
-            mascota.id = ultimoId;
-            agregarMascotaATabla(mascota);
-            ultimoId++;
+            agregarSpinner({});
+            setTimeout( () => {
+                const mascota = crearMascotaDeForm({});
+                mascota.id = ultimoId++;
+                agregarMascotaATabla(mascota);
+                cargarAlLocalStorage(mascota, 'animales');
+                removerSpinner();
+            }, tiempoSpinner );
         }
 
         if ( event.target.matches("#eliminar") ) {
-            const id = parseInt($('form').id.value);
-            eliminarPorId( id, $('tbody') );
+            agregarSpinner({});
+            setTimeout( () => {
+                const id = parseInt($('form').id.value);
+                eliminarPorId( id, $('tbody') );
+                eliminarDeLocalStoragePorId(id, 'animales');
+                removerSpinner();
+            }, tiempoSpinner );
         }
 
         if ( event.target.matches('td') ) {
-            agregarSpinner();
-            const tr = event.target.parentElement;
-            deTablaAForm(tr, $('form'));
-            removerSpinner();
+            agregarSpinner({});
+            setTimeout( () => {
+                const tr = event.target.parentElement;
+                deTablaAForm(tr, $('form'));
+                removerSpinner();
+            }, tiempoSpinner );
         }
 
         if ( event.target.matches('#cancelar') ) {
             const form = $('form');
-            form.reset();
+            agregarSpinner({});
+            setTimeout( () => {
+                form.reset();
+                removerSpinner();
+            }, tiempoSpinner );
+            
         }
 
     } );
@@ -75,6 +71,12 @@ function asignarEventListeners() {
 }
 
 (function main() {
+
+    let mascotas = cargarDeLocalStorage('animales');
+    agregarVariosATabla(mascotas);
+
+    if ( Array.isArray(mascotas) && mascotas.length > 0 )
+        ultimoId = ++mascotas[ mascotas.length - 1 ].id;
 
     asignarEventListeners();
 
