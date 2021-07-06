@@ -38,9 +38,18 @@ function asignarEventListeners() {
         }
 
         if ( event.target.matches('#guardar') ) {
+
+            const id = parseInt($('form').id.value);
+            console.log(id)
+            if ( id <= 0 ) {
+                mostrarAlert('Guardando...');
+            }
+            else {
+                mostrarAlert('Updateando...');
+            }
+
             agregarSpinner({});
             setTimeout( () => {
-                const id = parseInt($('form').id.value);
                 const mascota = crearMascotaDeForm({});
                 
                 if ( id <= 0 ) {
@@ -49,6 +58,7 @@ function asignarEventListeners() {
                     cargarAlLocalStorage(mascota, 'animales');
                     removerSpinner();
                     $('form').reset();
+                    noMostrarAlert();
                     return
                 }
 
@@ -57,10 +67,12 @@ function asignarEventListeners() {
                 agregarMascotaATabla(mascota);
                 removerSpinner();
                 $('form').reset();
+                noMostrarAlert();
             }, tiempoSpinner );
         }
 
         if ( event.target.matches("#eliminar") ) {
+            mostrarAlert('Eliminando...');
             agregarSpinner({});
             setTimeout( () => {
                 const id = parseInt($('form').id.value);
@@ -68,12 +80,14 @@ function asignarEventListeners() {
                 if ( id === 0 ) {
                     window.alert('NO SE SELECCIONÓ NADA');
                     removerSpinner();
+                    noMostrarAlert();
                     return
                 }
                 
                 eliminarPorId( id, $('tbody') );
                 eliminarDeLocalStoragePorId(id, 'animales');
                 removerSpinner();
+                noMostrarAlert();
             }, tiempoSpinner );
         }
 
@@ -93,20 +107,45 @@ function asignarEventListeners() {
                 form.reset();
                 removerSpinner();
             }, tiempoSpinner );
-            
         }
 
     } );
 
 }
 
-(function main() {
+function mostrarAlert ( texto ) {
+    const divAlert = $('#custom-alert');
+    vaciarNodo(divAlert);
+    const textNode = document.createTextNode(texto);
+    divAlert.appendChild(textNode);
+    divAlert.classList.add('display-flex');
+}
 
+function noMostrarAlert () {
+    const divAlert = $('#custom-alert');
+    divAlert.classList.remove('display-flex');
+}
+
+function vaciarNodo ( nodo = document.createElement('') ) {
+    nodo.innerText = '';
+}
+
+(function main() {
+    let max = -1;
     let mascotas = cargarDeLocalStorage('animales');
     agregarVariosATabla(mascotas);
 
-    if ( Array.isArray(mascotas) && mascotas.length > 0 )
-        ultimoId = ++mascotas[ mascotas.length - 1 ].id;
+    if ( Array.isArray(mascotas) && mascotas.length > 0 ){
+        
+        mascotas.map( (value) => {
+            if (value.id > max){
+                max = value.id
+                return true
+            }
+            return false
+        } )[0].id;
+    }
+    ultimoId = ++max;
 
     asignarEventListeners();
 

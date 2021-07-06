@@ -12,6 +12,10 @@
 
 <body>
 
+    <div id="custom-alert" class="custom-alert no-display">
+        
+    </div>
+
     <!-- #region Header -->
     <header class="header">
         <div class="logo-container"><img class="logo"
@@ -40,10 +44,7 @@
         <div class="main-header">
             <h2 class="main-logo">Administracion</h2>
             <div class="img-container">
-                <img 
-                    class="img-main"
-                    src="css/imagenes/img-main.jpeg"
-                    alt="Animales de la Selva">
+                <img class="img-main" src="css/imagenes/img-main.jpeg" alt="Animales de la Selva">
             </div>
         </div>
         <!-- #endregion -->
@@ -108,14 +109,33 @@
                 </div>
                 <!-- #endregion -->
 
+                <!-- #region Peaje -->
+                <div class="multi-select">
+                
+                    <label for="marron">
+                        Marron
+                        <input type="checkbox" name="pelaje" id="marron" value="marron">
+                    </label>
+    
+                    <label for="amarillo">
+                        Amarillo
+                        <input type="checkbox" name="pelaje" id="amarillo" value="amarillo">
+                    </label>
+    
+                    <label for="negro">
+                        Negro
+                        <input type="checkbox" name="pelaje" id="negro" value="negro">
+                    </label>
+    
+                </div>
+                <!-- #endregion -->
+
             </fieldset>
 
             <!-- #region Buttons -->
             <div class="btns-container">
                 <button class="button" id="guardar">
-                    <img
-                        src="css/imagenes/guardar.png"  
-                        class="lbl-btn">
+                    <img src="css/imagenes/guardar.png" class="lbl-btn">
                     Guardar
                 </button>
                 <button class="button" id="eliminar">Eliminar</button>
@@ -139,6 +159,7 @@
                         <th>Raza</th>
                         <th>Fecha de Nacimiento</th>
                         <th>Vacuna</th>
+                        <th>Pelaje</th>
                     </tr>
                 </thead>
 

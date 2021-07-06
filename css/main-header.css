@@ -17,3 +17,12 @@
 .img-container {
     margin: 1em;
 }
+
+
+@media screen and (max-width: 768px) {
+
+    .img-container {
+        display: none;
+    }
+
+}

@@ -13,7 +13,8 @@ class Anuncio_Mascota extends Anuncio {
         precio = 0.0,
         raza = "",
         fechaNac = "",
-        vacuna = ""
+        vacuna = "",
+        pelaje = []
     } ) {
         super( {id, descripcion, transaccion, precio} );
         this.animal = animal
@@ -21,6 +22,7 @@ class Anuncio_Mascota extends Anuncio {
         this.raza = raza;
         this.fechaNac = fechaNac;
         this.vacuna = vacuna;
+        this.pelaje = pelaje;
     }
 
 }
@@ -34,6 +36,15 @@ function crearMascotaDeForm ({ form = $('form') }) {
     const raza = form.raza.value;
     const fechaNac = form.fechaNac.value;
     const vacuna = form.vacuna.value;
+    const pelaje = [];
+    
+    for ( const checkbox of form.pelaje ) {
+        if ( checkbox.checked ) {
+            pelaje.push(checkbox.value);
+        }
+    }
+
+    console.log(pelaje)
 
     return new Anuncio_Mascota ( {
         id,
@@ -44,11 +55,12 @@ function crearMascotaDeForm ({ form = $('form') }) {
         precio,
         raza,
         fechaNac,
-        vacuna
+        vacuna,
+        pelaje
     } );
 }
 
-function cargarAForm ( {
+/* function cargarAForm ( {
     form = $('form'),
     mascota = null
 } ) {
@@ -63,8 +75,9 @@ function cargarAForm ( {
     form.raza.value = mascota.raza;
     form.fechaNac.value = mascota.fechaNac.value;
     form.vacuna.value = mascota.fechaNac.value;
+    form.pelaje.value = mascota.pelaje;
 
-}
+} */
 
 function agregarMascotaATabla ( mascota ) {
     const fragmentForTr = document.createDocumentFragment();
@@ -75,7 +88,10 @@ function agregarMascotaATabla ( mascota ) {
     mascotaEntries.forEach ( ([key, value]) => {
         const td = document.createElement('td');
         
-        if ( key !== 'id' ) td.innerText = value;
+        if ( key === 'pelaje' ) {
+            td.innerText = JSON.stringify(value);
+        }
+        else if ( key !== 'id' ) td.innerText = value;
         else {
             td.innerText = value;
             tr.setAttribute( 'mascota-id', value );
@@ -90,7 +106,9 @@ function agregarMascotaATabla ( mascota ) {
 
 function deTablaAForm ( tr, form ) {
     const childrenTd = tr.children;
-
+    const formPelaje = form.pelaje;
+    const arrayPelaje = JSON.parse(childrenTd[9].innerText);
+    
     if ( childrenTd === null ) return
 
     form.id.value = parseInt(childrenTd[0].innerText); 
@@ -101,6 +119,20 @@ function deTablaAForm ( tr, form ) {
     form.raza.value = childrenTd[6].innerText;
     form.fechaNac.value = childrenTd[7].innerText;
     form.vacuna.value = childrenTd[8].innerText;
+    
+    for ( const color of arrayPelaje ) {
+        
+        for ( const checkbox of formPelaje ) {
+
+            if ( color === checkbox.value ) {
+                checkbox.checked = true;
+                break;
+            }
+
+        }
+
+    }
+    
 }
 
 function eliminarPorId ( id, tbody = document.createElement('tbody') ) {
@@ -147,7 +179,8 @@ function cargarDeLocalStorage(localName) {
         const precio = elem.precio;
         const raza = elem.raza;
         const fechaNac = elem.fechaNac;
-        const vacuna = elem.vacuna; 
+        const vacuna = elem.vacuna;
+        const pelaje = elem.pelaje
 
         arrAnuncios.push ( 
             new Anuncio_Mascota ( {
@@ -159,7 +192,8 @@ function cargarDeLocalStorage(localName) {
                 precio, 
                 raza, 
                 fechaNac, 
-                vacuna
+                vacuna,
+                pelaje
             })
         );
     } );
