@@ -5,7 +5,7 @@ const tiempoSpinner = 1500;
 import { 
     removerSpinner, 
     agregarSpinner 
-} from '../Spinner/spinner.js';
+} from '../css/Spinner/spinner.js';
 
 import {
     crearMascotaDeForm,

@@ -1,0 +1,43 @@
+.header,
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.logo {
+    width: 25%;
+    padding: .4em;
+}
+
+.ul-header,
+.ul-footer {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.link {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 24px;
+    padding: 1em;
+}
+
+.li-header:hover,
+.li-footer:hover {
+   background-color: aliceblue;
+}
+
+.copyright {
+    padding: 1em;
+}
+
+@media screen and (max-width: 1500px) {
+
+
+}

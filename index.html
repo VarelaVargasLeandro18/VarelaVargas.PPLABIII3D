@@ -4,28 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Primer Parcial</title>
 </head>
 <body>
 
-    <header>
-        <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/2018_Animal_Planet_logo.svg/800px-2018_Animal_Planet_logo.svg.png" alt="Animal Planet Logo"></div>
+    <header class="header">
+        <div class="logo-container"><img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/2018_Animal_Planet_logo.svg/800px-2018_Animal_Planet_logo.svg.png" alt="Animal Planet Logo"></div>
 
         <nav class="nav-bar">
-            <ul>
-                <li><a href="#">Nosotros</a></li>
-                <li><a href="#">Anuncios</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contactos</a></li>
+            <ul class="ul-header">
+                <li class="li-header"><a class="link" href="#">Nosotros</a></li>
+                <li class="li-header"><a class="link" href="#">Anuncios</a></li>
+                <li class="li-header"><a class="link" href="#">Blog</a></li>
+                <li class="li-header"><a class="link" href="#">Contactos</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h2>Administracion</h2>
-        <div class="img-container">
-            <img class="img-main" src="https://www.lavanguardia.com/files/image_948_465/uploads/2019/10/02/5fa53234969ff.jpeg" alt="Animales de la Selva">
+
+        <div class="main-header">
+            <h2 class="main-logo">Administracion</h2>
+            <div class="img-container">
+                <img class="img-main" src="https://www.lavanguardia.com/files/image_948_465/uploads/2019/10/02/5fa53234969ff.jpeg" alt="Animales de la Selva">
+            </div>
         </div>
 
         <form action="#">
@@ -100,6 +103,20 @@
         </div>
 
     </main>
+
+    <footer class="footer">
+        <nav class="nav-bar">
+            <ul class="ul-footer">
+                <li class="li-footer"><a class="link" href="#">Nosotros</a></li>
+                <li class="li-footer"><a class="link" href="#">Anuncios</a></li>
+                <li class="li-footer"><a class="link" href="#">Blog</a></li>
+                <li class="li-footer"><a class="link" href="#">Contactos</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            <p>Todos los derechos reservados &copy;</p>
+        </div>
+    </footer>
     
 </body>
 <script src="./js/script.js" type="module"></script>  
