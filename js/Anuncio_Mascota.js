@@ -182,11 +182,7 @@ function agregarVariosATabla (anuncios) {
 
 function eliminarDeLocalStoragePorId (Id, localName) {
     const arrAnuncios = cargarDeLocalStorage(localName);
-    const nuevosAnuncios = arrAnuncios.filter( (value) => {
-        console.log(value);
-        return value.id != Id;
-    } );
-    console.log(nuevosAnuncios);
+    const nuevosAnuncios = arrAnuncios.filter( (value) => value.id != Id );
     localStorage.setItem(localName, JSON.stringify(nuevosAnuncios));
 }
 /* #endregion */
