@@ -18,6 +18,11 @@
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/2018_Animal_Planet_logo.svg/800px-2018_Animal_Planet_logo.svg.png"
                 alt="Animal Planet Logo"></div>
 
+        <label for="expand" class="lbl-expand">
+            <img class="expand-logo" src="css/imagenes/menu.png" alt="menu">
+        </label>
+        <input class="expand-btn" type="checkbox" name="" id="expand">
+
         <nav class="nav-bar">
             <ul class="ul-header">
                 <li class="li-header"><a class="link" href="#">Nosotros</a></li>
@@ -35,8 +40,9 @@
         <div class="main-header">
             <h2 class="main-logo">Administracion</h2>
             <div class="img-container">
-                <img class="img-main"
-                    src="https://www.lavanguardia.com/files/image_948_465/uploads/2019/10/02/5fa53234969ff.jpeg"
+                <img 
+                    class="img-main"
+                    src="css/imagenes/img-main.jpeg"
                     alt="Animales de la Selva">
             </div>
         </div>
@@ -106,9 +112,14 @@
 
             <!-- #region Buttons -->
             <div class="btns-container">
-                <button id="guardar">Guardar</button>
-                <button id="eliminar">Eliminar</button>
-                <button id="cancelar">Cancelar</button>
+                <button class="button" id="guardar">
+                    <img
+                        src="css/imagenes/guardar.png"  
+                        class="lbl-btn">
+                    Guardar
+                </button>
+                <button class="button" id="eliminar">Eliminar</button>
+                <button class="button" id="cancelar">Cancelar</button>
             </div>
             <!-- #endregion -->
 

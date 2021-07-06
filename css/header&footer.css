@@ -26,6 +26,9 @@
     text-decoration: none;
     font-size: 24px;
     padding: 1em;
+    transition: 
+                background-color 500ms,
+                color 500ms;
 }
 
 .li-header:hover .link,
@@ -39,8 +42,61 @@
     padding: 1em;
 }
 
+.expand-btn {
+    display: none;
+    width: 3em;
+    height: 2em;
+    border-radius: 0;
+}
+
+.lbl-expand {
+    display: none;
+    margin: 1em;
+    border-radius: 0%;
+}
+
+.lbl-expand,
+.expand-logo {
+    width: 4em;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 1500px) {
 
-    
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-bar {
+        width: 100%;
+    }
+
+    .ul-header {
+        display: none;
+        transition: display 2s;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .li-header {
+        width: 100%;
+    }
+
+    .lbl-expand {
+        display: block;
+    }
+
+    .li-header .link {
+        box-sizing: border-box;
+        padding: .6em;
+        width: 100%;
+        margin: .1em 0;
+    }
+
+    /* Aparecer MENU */
+    .expand-btn:checked + .nav-bar > .ul-header {
+        display: flex;
+    }
 
 }
