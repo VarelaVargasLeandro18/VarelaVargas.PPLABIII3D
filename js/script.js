@@ -40,10 +40,9 @@ function asignarEventListeners() {
         if ( event.target.matches('#guardar') ) {
             agregarSpinner({});
             setTimeout( () => {
-                const id = $('form').id.value;
+                const id = parseInt($('form').id.value);
                 const mascota = crearMascotaDeForm({});
-                console.log(id);
-
+                
                 if ( id <= 0 ) {
                     mascota.id = ultimoId++;
                     agregarMascotaATabla(mascota);
@@ -54,6 +53,8 @@ function asignarEventListeners() {
                 }
 
                 updateDeLocalStoragePorId(id, 'animales', mascota);
+                eliminarPorId(id, $('tbody'));
+                agregarMascotaATabla(mascota);
                 removerSpinner();
                 $('form').reset();
             }, tiempoSpinner );

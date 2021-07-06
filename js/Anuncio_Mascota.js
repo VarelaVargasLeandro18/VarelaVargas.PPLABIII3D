@@ -94,10 +94,10 @@ function deTablaAForm ( tr, form ) {
     if ( childrenTd === null ) return
 
     form.id.value = parseInt(childrenTd[0].innerText); 
-    form.titulo.value = childrenTd[1].innerText;
+    form.descripcion.value = childrenTd[1].innerText;
     form.precio.value = childrenTd[3].innerText;
     form.animal.value = childrenTd[4].innerText;
-    form.descripcion.value = childrenTd[5].innerText;
+    form.titulo.value = childrenTd[5].innerText;
     form.raza.value = childrenTd[6].innerText;
     form.fechaNac.value = childrenTd[7].innerText;
     form.vacuna.value = childrenTd[8].innerText;
@@ -109,8 +109,8 @@ function eliminarPorId ( id, tbody = document.createElement('tbody') ) {
 
     trs.forEach ( (elem) => {        
         if ( elem.nodeType === Node.ELEMENT_NODE ) {
-            const tr_id = elem.getAttribute('mascota-id');
-
+            const tr_id = parseInt(elem.getAttribute('mascota-id'));
+            
             if ( parseInt( tr_id ) === id ) {
                 elem.remove();
                 return
