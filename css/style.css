@@ -2,4 +2,11 @@
 @import url('./button.css');
 @import url('./header&footer.css');
 @import url('./main-header.css');
+@import url('./form.css');
 
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300;400;600&display=swap');
+
+* {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}

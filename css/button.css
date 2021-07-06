@@ -1,7 +1,7 @@
 button {
-    font-size: 25px;
+    font-size: 24px;
     width: 6em;
-    height: 3.5em;
+    height: 2.5em;
     background-color: lightseagreen;
     border: 1px solid beige;
     border-radius: 25% 0 25% 0;
@@ -10,4 +10,10 @@ button {
     box-shadow: -5px 5px 5px 0 rgba(0, 0, 0, 0.308);
     transition: background-color .5s;
     cursor: pointer;
+}
+
+.btns-container {
+    margin: 25px;
+    display: flex;
+    justify-content: space-between;
 }
