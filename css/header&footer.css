@@ -28,9 +28,11 @@
     padding: 1em;
 }
 
-.li-header:hover,
-.li-footer:hover {
+.li-header:hover .link,
+.li-footer:hover .link {
    background-color: aliceblue;
+   color:chocolate;
+   text-decoration: underline;
 }
 
 .copyright {
@@ -39,5 +41,6 @@
 
 @media screen and (max-width: 1500px) {
 
+    
 
 }

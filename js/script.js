@@ -15,8 +15,13 @@ import {
     cargarAlLocalStorage,
     cargarDeLocalStorage,
     agregarVariosATabla,
-    eliminarDeLocalStoragePorId
+    eliminarDeLocalStoragePorId,
+    updateDeLocalStoragePorId
 } from './Anuncio_Mascota.js';
+
+import {
+    validarForm
+} from './form-validation.js';
 
 function asignarEventListeners() {
 
@@ -24,16 +29,33 @@ function asignarEventListeners() {
 
         if (event.target.matches('button')) {
             event.preventDefault();
+
+            if (event.target.matches("#guardar")
+                && !validarForm('form') ) {
+                window.alert('Faltan CAMPOS!');
+                return
+            }
         }
 
         if ( event.target.matches('#guardar') ) {
             agregarSpinner({});
             setTimeout( () => {
+                const id = $('form').id.value;
                 const mascota = crearMascotaDeForm({});
-                mascota.id = ultimoId++;
-                agregarMascotaATabla(mascota);
-                cargarAlLocalStorage(mascota, 'animales');
+                console.log(id);
+
+                if ( id <= 0 ) {
+                    mascota.id = ultimoId++;
+                    agregarMascotaATabla(mascota);
+                    cargarAlLocalStorage(mascota, 'animales');
+                    removerSpinner();
+                    $('form').reset();
+                    return
+                }
+
+                updateDeLocalStoragePorId(id, 'animales', mascota);
                 removerSpinner();
+                $('form').reset();
             }, tiempoSpinner );
         }
 
@@ -41,6 +63,13 @@ function asignarEventListeners() {
             agregarSpinner({});
             setTimeout( () => {
                 const id = parseInt($('form').id.value);
+                
+                if ( id === 0 ) {
+                    window.alert('NO SE SELECCIONÓ NADA');
+                    removerSpinner();
+                    return
+                }
+                
                 eliminarPorId( id, $('tbody') );
                 eliminarDeLocalStoragePorId(id, 'animales');
                 removerSpinner();

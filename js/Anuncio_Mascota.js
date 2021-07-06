@@ -91,25 +91,24 @@ function agregarMascotaATabla ( mascota ) {
 function deTablaAForm ( tr, form ) {
     const childrenTd = tr.children;
 
-
     if ( childrenTd === null ) return
 
-    form.id.value = childrenTd[0].innerText; 
+    form.id.value = parseInt(childrenTd[0].innerText); 
     form.titulo.value = childrenTd[1].innerText;
-    form.descripcion.value = childrenTd[2].innerText;
     form.precio.value = childrenTd[3].innerText;
     form.animal.value = childrenTd[4].innerText;
-    form.raza.value = childrenTd[5].innerText;
-    form.fechaNac.value = childrenTd[6].innerText;
-    form.vacuna.value = childrenTd[7].innerText;
+    form.descripcion.value = childrenTd[5].innerText;
+    form.raza.value = childrenTd[6].innerText;
+    form.fechaNac.value = childrenTd[7].innerText;
+    form.vacuna.value = childrenTd[8].innerText;
 }
 
-function eliminarPorId ( id, tbody = document.createElement('') ) {
+function eliminarPorId ( id, tbody = document.createElement('tbody') ) {
 
     const trs = tbody.childNodes;
 
     trs.forEach ( (elem) => {        
-        if ( elem.nodeType === 1 ) {
+        if ( elem.nodeType === Node.ELEMENT_NODE ) {
             const tr_id = elem.getAttribute('mascota-id');
 
             if ( parseInt( tr_id ) === id ) {
@@ -185,6 +184,11 @@ function eliminarDeLocalStoragePorId (Id, localName) {
     const nuevosAnuncios = arrAnuncios.filter( (value) => value.id != Id );
     localStorage.setItem(localName, JSON.stringify(nuevosAnuncios));
 }
+
+function updateDeLocalStoragePorId ( Id, localName, anuncio ) {
+    eliminarDeLocalStoragePorId(Id, localName);
+    cargarAlLocalStorage(anuncio, localName);
+}
 /* #endregion */
 
 export { 
@@ -196,5 +200,6 @@ export {
         cargarAlLocalStorage,
         cargarDeLocalStorage,
         agregarVariosATabla,
-        eliminarDeLocalStoragePorId
+        eliminarDeLocalStoragePorId,
+        updateDeLocalStoragePorId
 };
